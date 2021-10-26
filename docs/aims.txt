@@ -1,0 +1,2 @@
+1. Create a program to convert results of arena shogi tournaments into FESA-style text file ready to send to calculate results.
+2. Further development is probable. 
