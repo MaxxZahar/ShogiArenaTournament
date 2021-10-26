@@ -56,6 +56,8 @@ function dataProcessing(players, results) {
     for (let j = 0; j < numberOfPlayers; j++){
         table += `${j + 1} [${players[j].surname}] [${players[j].name}] [${gamesToString(players[j].games)}] ${players[j].points} \n`;
     }
+    const input = document.querySelector('input[type="hidden"]');
+    input.value = table;
     return table;
 }
 
