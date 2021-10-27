@@ -1,7 +1,9 @@
 <?php
 if (isset($_POST['createfile'])) {
     $table = $_POST['table'];
-    $path = 'FESAtable.txt';
+    $header = '[' . $_POST['header'] . "]";
+    $path = $_POST['filename'] . '.txt';
+    $table = $header . "\r\n" . $table;
     $file = fopen("../temp/table.txt", 'w+');
     flock($file, LOCK_EX);
     fwrite($file, $table);
