@@ -1,0 +1,32 @@
+$hoverColor: hsl(75%, 70%, 90%);
+.wrapper {
+    margin: 3vw;
+}
+form {
+    display: flex;
+    flex-direction: column;
+}
+label,input {
+    margin-bottom: 5px;
+}
+label {
+    font-weight: 700;
+}
+input {
+    cursor: pointer;
+    padding: 5px;
+}
+input:focus {
+    background-color: $hoverColor;
+}
+.button {
+    padding: 3px 0;
+    width: 15%;
+    align-self: center;
+    margin-top: 1rem;
+    font-size: 1.2rem;
+}
+.button:hover {
+    cursor: pointer;
+    background-color: $hoverColor;
+}

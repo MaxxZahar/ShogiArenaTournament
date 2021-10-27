@@ -8,14 +8,18 @@
     <title>Arena Tournament</title>
 </head>
 <body>
-<form action='../php/createFESATable.php' method="post">
-    <label for="h1">Header</label>
-    <input type="text" name="header" id="h1">
-    <label for="f1">Filename</label>
-    <input type="text" name="filename" id="f1">
-    <input type="hidden" name='table'>
-    <button type="submit" name="createfile">Create text file</button>
-</form>
+<main>
+    <section class="wrapper">
+        <form action='../php/createFESATable.php' method="post">
+            <label for="h1">Header</label>
+            <input type="text" name="header" id="h1">
+            <label for="f1">Filename</label>
+            <input type="text" name="filename" id="f1">
+            <input type="hidden" name='table'>
+            <button type="submit" name="createfile" class="button">Create text file</button>
+        </form>
+    </section>
+</main>
 </body>
 <script src="../js/script.js"></script>
 </html>
