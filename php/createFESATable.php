@@ -1,7 +1,7 @@
 <?php
 if (isset($_POST['createfile'])) {
     $table = $_POST['table'];
-    $header = '[' . $_POST['header'] . "]";
+    $header = '[' . ucwords($_POST['header']) . "]";
     $path = $_POST['filename'] . '.txt';
     $table = $header . "\r\n" . $table;
     $file = fopen("../temp/table.txt", 'w+');
@@ -13,5 +13,4 @@ if (isset($_POST['createfile'])) {
     header("Content-type: text/html; charset=utf-8");
     fpassthru($file);
     unlink("../temp/table.txt");
-    exit();
 }
