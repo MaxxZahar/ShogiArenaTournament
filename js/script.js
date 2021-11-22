@@ -25,22 +25,23 @@ function dataProcessing(players, results) {
     for (let i = 0; i < numberOfGames; i++) {
         const winnerID = results[i].winner;
         const loserID = results[i].loser;
+        const handicap = results[i].handicap;
         const winnerIndex = players.findIndex(player => player.id == winnerID);
         const loserIndex = players.findIndex(player => player.id == loserID);
         if (players[winnerIndex].games.length === players[loserIndex].games.length){
-            addResult(players, winnerIndex, loserIndex);
+            addResult(players, winnerIndex, loserIndex, handicap);
         } else if (players[winnerIndex].games.length > players[loserIndex].games.length){
             const diff = players[winnerIndex].games.length - players[loserIndex].games.length;
             for (let j = 0; j < diff; j++){
                 players[loserIndex].games.push('0-');
             }
-            addResult(players, winnerIndex, loserIndex);
+            addResult(players, winnerIndex, loserIndex, handicap);
         } else {
             const diff = players[loserIndex].games.length - players[winnerIndex].games.length;
             for (let j = 0; j < diff; j++){
                 players[winnerIndex].games.push('0-');
             }
-            addResult(players, winnerIndex, loserIndex);
+            addResult(players, winnerIndex, loserIndex, handicap);
         }
     }
     let maxLength = 0;
@@ -66,11 +67,25 @@ function dataProcessing(players, results) {
     return table;
 }
 
-function addResult(players, winnerIndex, loserIndex){
-    players[winnerIndex].games.push(`${loserIndex + 1}+`);
-    players[loserIndex].games.push(`${winnerIndex + 1}-`);
+function addResult(players, winnerIndex, loserIndex, handicap){
+    if (handicap){
+        handicap = createHandicap(handicap);
+        players[winnerIndex].games.push(`${loserIndex + 1}+(${handicap[0]})`);
+        players[loserIndex].games.push(`${winnerIndex + 1}-(${handicap[1]})`);
+    } else {
+        players[winnerIndex].games.push(`${loserIndex + 1}+`);
+        players[loserIndex].games.push(`${winnerIndex + 1}-`);
+    }
 }
 
 function gamesToString(games){
     return games.reduce((acc, el) => acc + ' ' + el);
+}
+
+function createHandicap(handicap){
+    if (handicap[0] === '-'){
+        return [handicap, handicap.replace('-', '+')];
+    } else if (handicap[0] === '+'){
+        return [handicap, handicap.replace('+', '-')];
+    }
 }
