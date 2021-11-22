@@ -12,11 +12,16 @@ function dataProcessing(players, results) {
     const numberOfPlayers = players.length;
     const numberOfGames = results.length;
     const points = Array(numberOfPlayers).fill(0);
+    const gamesPlayed = Array(numberOfPlayers).fill(0);
     for (let i = 0; i < numberOfGames; i++) {
         points[Number(results[i].winner) - 1]++;
+        gamesPlayed[Number(results[i].winner) - 1]++;
+        gamesPlayed[Number(results[i].loser) - 1]++;
     }
-    players.forEach((player, i) => { player['points'] = points[i]; player['games'] = [] });
-    players.sort((a, b) => b.points - a.points);
+    players.forEach((player, i) => { player['points'] = points[i]; player['winRate'] = points[i] / gamesPlayed[i]; player['games'] = [] });
+    players.sort((a, b) => {
+        if (b.points - a.points) return b.points - a.points;
+        return b.winRate - a.winRate});
     for (let i = 0; i < numberOfGames; i++) {
         const winnerID = results[i].winner;
         const loserID = results[i].loser;
