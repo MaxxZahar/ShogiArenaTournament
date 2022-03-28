@@ -73,6 +73,8 @@ def compare_players_with_base(table):
         for player in players_not_exist:
             print(
                 f'Unknown player {player["last_name"], player["first_name"]}')
+        if not len(players_not_exist):
+            print('Players are checked')
         return players_not_exist
 
 
@@ -83,4 +85,4 @@ with open("../data/table2.txt") as table:
     check_all_brackets(table_body)
     check_all_language(table_body)
     new_players = compare_players_with_base(table_body)
-    add_players_to_base(new_players)
+    # add_players_to_base(new_players)
