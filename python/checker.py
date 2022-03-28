@@ -78,6 +78,29 @@ def compare_players_with_base(table):
         return players_not_exist
 
 
+def check_points(line):
+    rb_index = line.rindex(']')
+    try:
+        points = float(re.search('\].*', line[rb_index:]).group(0)[1:].strip())
+    except:
+        raise Exception('Points are not presented right way')
+    pluses = line.count('+')
+    equals = line.count('=')
+    total = pluses + equals / 2
+    if (total == points):
+        return True
+    return False
+
+
+def check_all_points(table):
+    for i, line in enumerate(table):
+        if not check_points(line):
+            raise Exception(f'Wrong point value in line {i + 1}')
+    else:
+        print('Points are checked')
+        return True
+
+
 location = os.path.split(__file__)[0]
 os.chdir(location)
 with open("../data/table2.txt") as table:
@@ -85,4 +108,5 @@ with open("../data/table2.txt") as table:
     check_all_brackets(table_body)
     check_all_language(table_body)
     new_players = compare_players_with_base(table_body)
+    check_all_points(table_body)
     # add_players_to_base(new_players)
