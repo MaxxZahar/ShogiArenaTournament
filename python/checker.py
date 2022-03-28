@@ -47,8 +47,11 @@ def extract_players(table):
     return players
 
 
-def add_players_to_base(table):
-    players = extract_players(table)
+def add_players_to_base(table, type=False):
+    if type:
+        players = extract_players(table)
+    else:
+        players = table
     with open("../data/data.csv", 'a', newline='') as base:
         writer = csv.DictWriter(
             base, fieldnames=['last_name', 'first_name'], delimiter=';')
@@ -56,10 +59,28 @@ def add_players_to_base(table):
             writer.writerow(player)
 
 
+def compare_players_with_base(table):
+    players = extract_players(table)
+    database_players = []
+    players_not_exist = []
+    with open("../data/data.csv") as base:
+        reader = csv.DictReader(
+            base, fieldnames=['last_name', 'first_name'], delimiter=';')
+        for row in reader:
+            database_players.append(row)
+        players_not_exist = [
+            player for player in players if player not in database_players]
+        for player in players_not_exist:
+            print(
+                f'Unknown player {player["last_name"], player["first_name"]}')
+        return players_not_exist
+
+
 location = os.path.split(__file__)[0]
 os.chdir(location)
-with open("../data/table.txt") as table:
+with open("../data/table2.txt") as table:
     table_body = table.readlines()[1:]
     check_all_brackets(table_body)
     check_all_language(table_body)
-    # add_players_to_base(table_body)
+    new_players = compare_players_with_base(table_body)
+    add_players_to_base(new_players)
