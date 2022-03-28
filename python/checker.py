@@ -47,10 +47,19 @@ def extract_players(table):
     return players
 
 
+def add_players_to_base(table):
+    players = extract_players(table)
+    with open("../data/data.csv", 'a', newline='') as base:
+        writer = csv.DictWriter(
+            base, fieldnames=['last_name', 'first_name'], delimiter=';')
+        for player in players:
+            writer.writerow(player)
+
+
 location = os.path.split(__file__)[0]
 os.chdir(location)
 with open("../data/table.txt") as table:
     table_body = table.readlines()[1:]
     check_all_brackets(table_body)
     check_all_language(table_body)
-    extract_players(table_body)
+    # add_players_to_base(table_body)
