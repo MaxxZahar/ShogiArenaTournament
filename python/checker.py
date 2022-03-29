@@ -1,3 +1,4 @@
+import enum
 import os
 import csv
 import re
@@ -106,7 +107,6 @@ def get_results_string(line):
     string = re.search('\[.*\]', line[lb_index:]
                        ).group(0).strip()[1:-1].strip()
     string = string.replace(" ", "").replace('\t', '')
-    print(string)
     return string
 
 
@@ -142,6 +142,17 @@ def get_all_results(table):
     return results
 
 
+def check_all_legs(table):
+    results = get_all_results(table)
+    number_of_legs = len(results[0]['games'])
+    for i, result in enumerate(results):
+        if not len(result['games']) == number_of_legs:
+            raise Exception(f'Unequal number of games in line {i + 1}')
+    else:
+        print('Legs are checked')
+        return True
+
+
 location = os.path.split(__file__)[0]
 os.chdir(location)
 with open("../data/table2.txt") as table:
@@ -150,5 +161,5 @@ with open("../data/table2.txt") as table:
     check_all_language(table_body)
     new_players = compare_players_with_base(table_body)
     check_all_points(table_body)
-    print(get_all_results(table_body)[7])
+    check_all_legs(table_body)
     # add_players_to_base(new_players)
