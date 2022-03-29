@@ -101,6 +101,47 @@ def check_all_points(table):
         return True
 
 
+def get_results_string(line):
+    lb_index = line.rindex('[')
+    string = re.search('\[.*\]', line[lb_index:]
+                       ).group(0).strip()[1:-1].strip()
+    string = string.replace(" ", "").replace('\t', '')
+    print(string)
+    return string
+
+
+def get_results(line):
+    string = get_results_string(line)
+    separators = {'+', '-', '='}
+    current = ''
+    results = []
+    for s in string:
+        if not s in separators:
+            current += s
+        else:
+            result = {}
+            result['opponent'] = int(current)
+            if s == '+':
+                result['score'] = 1
+            elif s == '-':
+                result['score'] = 0
+            else:
+                result['score'] = 0.5
+            results.append(result)
+            current = ''
+    return results
+
+
+def get_all_results(table):
+    results = []
+    for i, line in enumerate(table):
+        result = {}
+        result['player'] = i + 1
+        result['games'] = get_results(line)
+        results.append(result)
+    return results
+
+
 location = os.path.split(__file__)[0]
 os.chdir(location)
 with open("../data/table2.txt") as table:
@@ -109,4 +150,5 @@ with open("../data/table2.txt") as table:
     check_all_language(table_body)
     new_players = compare_players_with_base(table_body)
     check_all_points(table_body)
+    print(get_all_results(table_body)[7])
     # add_players_to_base(new_players)
