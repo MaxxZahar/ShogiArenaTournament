@@ -153,6 +153,18 @@ def check_all_legs(table):
         return True
 
 
+def check_self_playing(table):
+    results = get_all_results(table)
+    for i, result in enumerate(results):
+        for game in result['games']:
+            if result['player'] == game['opponent']:
+                raise Exception(
+                    f'Wrong result: game with himself in line {i + 1}')
+    else:
+        print('Selfplay is checked')
+        return True
+
+
 location = os.path.split(__file__)[0]
 os.chdir(location)
 with open("../data/table2.txt") as table:
@@ -162,4 +174,5 @@ with open("../data/table2.txt") as table:
     new_players = compare_players_with_base(table_body)
     check_all_points(table_body)
     check_all_legs(table_body)
+    check_self_playing(table_body)
     # add_players_to_base(new_players)
