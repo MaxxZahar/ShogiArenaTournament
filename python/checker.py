@@ -165,6 +165,25 @@ def check_self_playing(table):
         return True
 
 
+def check_results(table):
+    results = get_all_results(table)
+    for i, result in enumerate(results):
+        for j, game in enumerate(result['games']):
+            if game['opponent']:
+                if game['opponent'] > len(results):
+                    raise Exception(
+                        f'Wrong result: such opponent does not exist in line {i + 1}')
+                if not result['player'] == results[game['opponent'] - 1]['games'][j]['opponent']:
+                    raise Exception(
+                        f'Wrong result: wrong opponent in line {i + 1} in leg {j + 1}')
+                if not game['score'] + results[game['opponent'] - 1]['games'][j]['score'] == 1:
+                    raise Exception(
+                        f'Wrong result: wrong result in line {i + 1} in leg {j + 1}')
+    else:
+        print('Results are checked')
+        return True
+
+
 location = os.path.split(__file__)[0]
 os.chdir(location)
 with open("../data/table2.txt") as table:
@@ -175,4 +194,5 @@ with open("../data/table2.txt") as table:
     check_all_points(table_body)
     check_all_legs(table_body)
     check_self_playing(table_body)
+    check_results(table_body)
     # add_players_to_base(new_players)
