@@ -33,7 +33,12 @@ def check_all_language(table):
         return True
 
 
+def remove_handicap(line):
+    return re.sub('[\(].*?[\)]', '', line)
+
+
 def check_points(line):
+    line = remove_handicap(line)
     rb_index = line.rindex(']')
     try:
         points = float(re.search('\].*', line[rb_index:]).group(0)[1:].strip())
@@ -66,7 +71,8 @@ def get_results_string(line):
 
 def get_results(line):
     string = get_results_string(line)
-    separators = {'+', '-', '='}
+    string = remove_handicap(string)
+    separators = {'+', '-', '=', '('}
     current = ''
     results = []
     for s in string:
