@@ -1,5 +1,5 @@
 import os
-from checkers import check_all_brackets, check_all_language, check_all_legs, check_all_points, check_self_playing, check_results
+from checkers import check_all_brackets, check_all_language, check_all_legs, check_all_points, check_self_playing, check_results, check_handicap
 from basework import compare_players_with_base, add_players_to_base
 
 location = os.path.split(__file__)[0]
@@ -14,4 +14,5 @@ with open("../data/table.txt") as table:
     check_all_legs(table_body)
     check_self_playing(table_body)
     check_results(table_body)
-    add_players_to_base(new_players)
+    check_handicap(table_body)
+    # add_players_to_base(new_players)

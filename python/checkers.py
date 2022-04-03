@@ -1,4 +1,5 @@
 import re
+from tkinter.ttk import Separator
 from alphabet_detector import AlphabetDetector
 
 
@@ -69,17 +70,42 @@ def get_results_string(line):
     return string
 
 
+# def get_results(line):
+#     string = get_results_string(line)
+#     # string = remove_handicap(string)
+#     separators = {'+', '-', '='}
+#     current = ''
+#     results = []
+
+#     for s in string:
+#         if not s in separators:
+#             current += s
+#         else:
+#             result = {}
+#             result['opponent'] = int(current)
+#             if s == '+':
+#                 result['score'] = 1
+#             elif s == '-':
+#                 result['score'] = 0
+#             else:
+#                 result['score'] = 0.5
+#             results.append(result)
+#             current = ''
+#     return results
+
 def get_results(line):
     string = get_results_string(line)
-    string = remove_handicap(string)
-    separators = {'+', '-', '=', '('}
+    separators = {'+', '-', '='}
     current = ''
     results = []
-    for s in string:
-        if not s in separators:
+    is_handicap = False
+    handicap = ''
+    result = {}
+
+    for i, s in enumerate(string):
+        if not s in separators and not is_handicap and not s == '(':
             current += s
-        else:
-            result = {}
+        elif s in separators and not is_handicap:
             result['opponent'] = int(current)
             if s == '+':
                 result['score'] = 1
@@ -87,8 +113,20 @@ def get_results(line):
                 result['score'] = 0
             else:
                 result['score'] = 0.5
-            results.append(result)
             current = ''
+            if i < len(string) - 1 and not string[i + 1] == '(':
+                results.append(result)
+                result = {}
+        elif s == '(':
+            is_handicap = True
+        elif s == ')':
+            is_handicap = False
+            result['handicap'] = handicap
+            handicap = ''
+            results.append(result)
+            result = {}
+        elif is_handicap:
+            handicap += s
     return results
 
 
@@ -142,3 +180,32 @@ def check_results(table):
     else:
         print('Results are checked')
         return True
+
+
+def check_handicap(table):
+    results = get_all_results(table)
+    signs = {'+', '-'}
+    handicaps = {'s', 'L', 'B', 'R', 'RL', '2p', '4p', '5p', '6p'}
+    for i, result in enumerate(results):
+        for j, game in enumerate(result['games']):
+            if 'handicap' in [*game]:
+                opponent = game['opponent']
+                sign = game['handicap'][0]
+                handicap = game['handicap'][1:]
+                if not 'handicap' in [*results[opponent - 1]['games'][j]]:
+                    raise Exception(
+                        f'Unmatching handicap in line {i + 1} leg {j + 1}')
+                if not sign in signs:
+                    raise Exception(
+                        f'Wrong handicap sign in line {i + 1} leg {j + 1}')
+                if sign == results[opponent - 1]['games'][j]['handicap'][0]:
+                    raise Exception(
+                        f'Same handicap signs in line {i + 1} leg {j + 1}')
+                if not handicap in handicaps:
+                    raise Exception(
+                        f'Wrong handicap in line {i + 1} leg {j + 1}')
+                if not handicap == results[opponent - 1]['games'][j]['handicap'][1:]:
+                    raise Exception(
+                        f'Different handicaps in line {i + 1} leg {j + 1}')
+    print('Handicaps are checked')
+    return True
