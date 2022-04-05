@@ -14,7 +14,6 @@ with open("../data/table.txt") as table:
     check_all_language(table_body)
     new_players = compare_players_with_base(table_body)
     check_all_points(table_body)
-
     check_all_legs(table_body)
     check_self_playing(table_body)
     check_results(table_body)
