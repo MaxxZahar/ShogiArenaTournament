@@ -95,6 +95,8 @@ def get_results_string(line):
 
 def get_results(line):
     string = get_results_string(line)
+    # print(string)
+    # print(len(string))
     separators = {'+', '-', '='}
     current = ''
     results = []
@@ -103,6 +105,7 @@ def get_results(line):
     result = {}
 
     for i, s in enumerate(string):
+        # print(s)
         if not s in separators and not is_handicap and not s == '(':
             current += s
         elif s in separators and not is_handicap:
@@ -114,7 +117,7 @@ def get_results(line):
             else:
                 result['score'] = 0.5
             current = ''
-            if i < len(string) - 1 and not string[i + 1] == '(':
+            if (i < len(string) - 1 and not string[i + 1] == '(') or i == len(string) - 1:
                 results.append(result)
                 result = {}
         elif s == '(':
