@@ -1,13 +1,17 @@
-[Zvezda Arena Tournament 4, St.Petersburg, 2022-04-17]
-1. [Yankovskii] [Denis] [5+ 3- 2- 9+ 11+ 0- 10+(-2p) 8+ 4+ ] 6
-2. [Frolochkin] [Vladimir] [10+ 0- 1+ 12+ 3+ 0- 0- 0- 0- ] 4
-3. [Nevolin] [Artyom] [7+ 1+ 11+ 4- 2- 0- 0- 5+ 0- ] 4
-4. [Shumilov] [Dmitry] [8+ 0- 5+ 3+ 0- 0- 0- 0- 1- ] 3
-5. [Leskova ] [Daria] [1- 7+ 4- 8- 6- 10+ 11+ 3- 0- ] 3
-6. [Sotnikov] [Sergey] [0- 0- 0- 0- 5+ 12+ 0- 0- 0- ] 2
-7. [Puksant] [Yuriy] [3- 5- 8+ 11+ 9- 0- 0- 0- 0- ] 2
-8. [Kiselyov] [Anton] [4- 0- 7- 5+ 10+ 0- 0- 1- 0- ] 2
-9. [Karev] [Maksim] [0- 0- 0- 1- 7+ 0- 0- 0- 0- ] 1
-10. [Kuznetsov ] [Petr] [2- 11+ 0- 0- 8- 5- 1-(+2p) 0- 0- ] 1
-11. [Averin] [Daniil] [0- 10- 3- 7- 1- 0- 5- 0- 0- ] 0
-12. [Korotchenko] [Denis] [0- 0- 0- 2- 0- 6- 0- 0- 0- ] 0
+[Zvezda Arena Tournament 7, St.Petersburg, 2022-09-25]
+1. [Zapara] [Victor] [15+ 0- 5+ 11+ 2+ 7- 0- 0- 8+ 0- 0- ] 5
+2. [Yankovskii] [Denis] [9+ 8+ 0- 0- 1- 14+ 0- 0- 5+ 4+ 13- ] 5
+3. [Puksant] [Yuriy] [10+ 7- 0- 0- 5- 4+ 16+ 0- 9+ 0- 0- ] 4
+4. [Leskova] [Daria] [11+ 16+ 0- 10- 8- 3- 0- 5+ 15+ 2- 6- ] 4
+5. [Goncharov] [Leonid] [6- 11+ 1- 16+ 3+ 9+ 8- 4- 2- 9- 0- ] 4
+6. [Frolochkin] [Vladimir] [5+ 0- 0- 0- 10+ 0- 0- 0- 0- 0- 4+ ] 3
+7. [Sotnikov] [Sergey] [0- 3+ 12- 0- 0- 1+ 14+ 0- 0- 0- 0- ] 3
+8. [Hegay] [Artem] [0- 2- 0- 0- 4+ 0- 5+ 9+ 1- 0- 0- ] 3
+9. [Averin] [Daniil] [2- 15- 0- 0- 16+ 5- 11+ 8- 3- 5+ 0- ] 3
+10. [Nevolin] [Artyom] [3- 0- 11- 4+ 6- 15+ 0- 0- 0- 0- 0- ] 2
+11. [Postnikov] [Mikhail] [4- 5- 10+ 1- 0- 16+ 9- 0- 0- 0- 0- ] 2
+12. [Shumilov] [Dmitry] [0- 0- 7+ 0- 0- 0- 0- 0- 0- 0- 0- ] 1
+13. [Balabhai] [Victor] [0- 0- 0- 0- 0- 0- 0- 0- 0- 0- 2+ ] 1
+14. [Shatrov] [Lev] [0- 0- 15+ 0- 0- 2- 7- 0- 0- 0- 0- ] 1
+15. [Kiselyov] [Anton] [1- 9+ 14- 0- 0- 10- 0- 0- 4- 0- 0- ] 1
+16. [Khrushcheva] [Svetlana] [0- 4- 0- 5- 9- 11- 3- 0- 0- 0- 0- ] 0
