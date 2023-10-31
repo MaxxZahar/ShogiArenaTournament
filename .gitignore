@@ -1,5 +1,6 @@
-players.csv
-results.csv
+data/players.csv
+data/results.csv
 python/__pycache__
 temp
-table.txt
+data/table.txt
+.vscode

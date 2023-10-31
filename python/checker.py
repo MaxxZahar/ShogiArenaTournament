@@ -1,13 +1,21 @@
 import os
-from checkers import check_all_brackets, check_all_language, check_all_legs, check_all_points, check_self_playing, check_results, check_handicap
+from checkers import (
+    check_all_brackets,
+    check_all_language,
+    check_all_legs,
+    check_all_points,
+    check_self_playing,
+    check_results,
+    check_handicap,
+)
 from basework import compare_players_with_base, add_players_to_base
 
 location = os.path.split(__file__)[0]
 os.chdir(location)
-with open("../data/B2.txt") as table:
+with open("../data/SPO3.txt") as table:
     table_body = table.readlines()[1:]
     for i, line in enumerate(table_body):
-        if not line.strip() or line.strip() == '\n' or line.strip() == '\t':
+        if not line.strip() or line.strip() == "\n" or line.strip() == "\t":
             table_body.pop(i)
     print(len(table_body))
     check_all_brackets(table_body)
